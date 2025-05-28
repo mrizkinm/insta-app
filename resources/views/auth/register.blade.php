@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout :title="$title">
   <div class="min-h-screen flex flex-col items-center justify-center p-4">
       <div class="w-full max-w-md bg-white rounded-lg shadow-md overflow-hidden">
           <!-- Header -->
