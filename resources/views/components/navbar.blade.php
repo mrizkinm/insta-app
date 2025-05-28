@@ -20,28 +20,35 @@
             </div> --}}
             
             <!-- Navigation Icons -->
-            <div class="flex items-center space-x-4">
-                <a href="/home" class="text-gray-700 hover:text-gray-900">
-                    <i class="fas fa-home text-2xl"></i>
-                </a>
-                <a href="/add" class="text-gray-700 hover:text-gray-900">
-                    <i class="far fa-plus-square text-2xl"></i>
-                </a>
-                <div class="ml-4 relative">
+            <div class="flex items-center">
+                <div class="hidden md:block space-x-4">
+                  <a href="/home" class="text-gray-700 hover:text-gray-900" title="Home">
+                      <i class="fas fa-home text-2xl"></i>
+                  </a>
+                  <a href="/add" class="text-gray-700 hover:text-gray-900" title="Add Post">
+                      <i class="fas fa-pen-to-square text-2xl"></i>
+                  </a>
+                </div>
+                <div class="relative">
                     <div class="ml-4 relative" id="profileDropdown">
                     <!-- Tombol Profil -->
-                    <button id="profileButton" class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                        <img class="h-8 w-8 rounded-full" src="https://randomuser.me/api/portraits/women/44.jpg" alt="Profile">
+                    <button id="profileButton" class="flex items-center">
+                        <div class="w-8 h-8 rounded-full bg-blue-500 p-0.5">
+                            <div class="bg-white p-0.5 rounded-full flex items-center justify-center">
+                                <span class="w-6 h-6 rounded-full bg-blue-600 text-white text-xs font-semibold flex items-center justify-center">
+                                    {{ collect(explode(' ', auth()->user()->name))->map(fn($part) => strtoupper(substr($part, 0, 1)))->join('') }}
+                                </span>
+                            </div>
+                        </div>
                     </button>
                     
+        
                     <!-- Dropdown Menu -->
                     <div id="dropdownMenu" class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-3 focus:outline-none z-50">
                         <div class="py-1" role="none">
                             <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Your Profile</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Settings</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Saved</a>
                             <div class="border-t border-gray-100"></div>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Switch Accounts</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Settings</a>
                             <div class="border-t border-gray-100"></div>
                             <a href="logout" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Log Out</a>
                         </div>
