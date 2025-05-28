@@ -1,6 +1,9 @@
-<x-layout :title="$title">
+@extends('components.layout')
+@section('title', $title)
+
+@section('content')
     <!-- Navbar -->
-    <x-navbar />
+    @include('components.navbar')
 
     <!-- Main Content -->
     <main class="pt-22 pb-22 max-w-xl mx-auto pl-4 pr-4">
@@ -238,5 +241,5 @@
             }
         }
     </script>
-    <x-bottom-nav />
-</x-layout>
+    @include('components.bottom-nav')
+@endsection

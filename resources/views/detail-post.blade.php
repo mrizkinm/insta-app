@@ -1,4 +1,8 @@
-<x-layout :title="$title" :id="$id">
+@extends('components.layout')
+@section('title', $title)
+@section('id', $id)
+
+@section('content')
     <style>
         .comment-box {
             max-height: calc(100vh - 200px);
@@ -10,7 +14,7 @@
         }
     </style>
     <!-- Navigation -->
-    <x-navbar />
+    @include('components.navbar')
 
     <!-- Main Content -->
     <main class="pt-22 pb-16 max-w-xl mx-auto pl-4 pr-4">
@@ -89,13 +93,17 @@
           const response = await res.json();
           const data = response.data;
 
-          document.querySelector('.like-btn i').className = data.is_liked ? 'fas fa-heart text-2xl text-red-500' : 'far fa-heart text-2xl';
-          document.getElementById('likes_count').textContent = `${data.likes_count} likes`;
-          document.getElementById('content').textContent = data.content;
-          document.getElementById('created_at').textContent = data.created_at;
-          document.getElementById('username').textContent = data.username;
-          document.getElementById('image_path').src = data.image_path;
-          document.getElementById('user_image').textContent = data.name.split(' ').map(w => w[0].toUpperCase()).join('');
+          if (res.ok) {
+            document.querySelector('.like-btn i').className = data.is_liked ? 'fas fa-heart text-2xl text-red-500' : 'far fa-heart text-2xl';
+            document.getElementById('likes_count').textContent = `${data.likes_count} likes`;
+            document.getElementById('content').textContent = data.content;
+            document.getElementById('created_at').textContent = data.created_at;
+            document.getElementById('username').textContent = data.username;
+            document.getElementById('image_path').src = data.image_path;
+            document.getElementById('user_image').textContent = data.name.split(' ').map(w => w[0].toUpperCase()).join('');
+          } else {
+            throw new Error(data.message || 'Failed to fetch post');
+          }
         } catch (error) {
           console.error('Error fetching post:', error);
         }
@@ -216,4 +224,4 @@
         }
       }
     </script>
-</x-layout>
+@endsection

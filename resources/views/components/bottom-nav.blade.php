@@ -6,7 +6,4 @@
     <a href="/add" class="text-gray-700 hover:text-gray-900" title="Add Post">
         <i class="fas fa-pen-to-square text-2xl"></i>
     </a>
-    {{-- <a href="#" class="text-gray-700 hover:text-gray-900">
-        <img class="h-6 w-6 rounded-full" src="https://randomuser.me/api/portraits/women/44.jpg" alt="Profile">
-    </a> --}}
 </div>

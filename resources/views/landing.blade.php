@@ -1,4 +1,7 @@
-<x-layout :title="$title">
+@extends('components.layout')
+@section('title', $title)
+
+@section('content')
     <style>
         .hero-gradient {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -261,7 +264,7 @@
                 </div>
             </div>
             <div class="mt-8 md:mt-12 pt-6 md:pt-8 border-t border-gray-800 text-xs sm:text-sm text-gray-400 text-center">
-                <p>© 2023 InstaApp. All rights reserved.</p>
+                <p>© 2025 InstaApp. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -295,4 +298,4 @@
             }
         });
     </script>
-</x-layout>
+@endsection

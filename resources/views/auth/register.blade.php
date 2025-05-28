@@ -1,9 +1,12 @@
-<x-layout :title="$title">
+@extends('components.layout')
+@section('title', $title)
+
+@section('content')
   <div class="min-h-screen flex flex-col items-center justify-center p-4">
       <div class="w-full max-w-md bg-white rounded-lg shadow-md overflow-hidden">
           <!-- Header -->
           <div class="bg-blue-600 py-6 px-8 text-center">
-              <h1 class="text-3xl font-bold text-white">Join InstaApp</h1>
+               <a href="/" class="text-3xl font-bold text-white">Join InstaApp</a>
               <p class="text-blue-100 mt-2">Create your account and start connecting</p>
           </div>
           
@@ -53,7 +56,7 @@
           <div class="bg-gray-50 px-8 py-4 text-center">
               <p class="text-gray-600 text-sm">
                   Already have an account? 
-                  <a href="login" class="font-medium text-blue-600 hover:text-blue-500">Log in</a>
+                  <a href="/login" class="font-medium text-blue-600 hover:text-blue-500">Log in</a>
               </p>
           </div>
       </div>
@@ -78,6 +81,17 @@
         {
           rule: 'email',
           errorMessage: 'Invalid email format',
+        },
+      ])
+      .addField('#username', [
+        {
+          rule: 'required',
+          errorMessage: 'Username is required',
+        },
+        {
+          rule: 'customRegexp',
+          value: /^[a-zA-Z0-9_.]+$/,
+          errorMessage: 'Username can only be letters, numbers, _ and .',
         },
       ])
       .addField('#password', [
@@ -115,6 +129,7 @@
 
         const form = e.target;
         const formData = new FormData(form);
+        const dataAll = Object.fromEntries(formData.entries());
 
         const response = await fetch("{{ route('register') }}", {
             method: "POST",
@@ -122,7 +137,7 @@
               'Content-Type': 'application/json',
               'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
             },
-            body: formData,
+            body: JSON.stringify(dataAll),
         });
 
         const data = await response.json();
@@ -157,4 +172,4 @@
         button.disabled = false;
       });
     </script>
-</x-layout>
+@endsection

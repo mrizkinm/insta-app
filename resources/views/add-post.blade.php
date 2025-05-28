@@ -1,4 +1,7 @@
-<x-layout :title="$title">
+@extends('components.layout')
+@section('title', $title)
+
+@section('content')
     <style>
         .drag-active {
             border-color: #3b82f6;
@@ -14,7 +17,7 @@
         }
     </style>
     <!-- Navigation -->
-    <x-navbar />
+    @include('components.navbar')
 
     <!-- Main Content -->
     <main class="pt-22 pb-16 max-w-xl mx-auto pl-4 pr-4">
@@ -52,7 +55,7 @@
     </main>
 
     <!-- Bottom Navigation (Mobile) -->
-    <x-bottom-nav />
+    @include('components.bottom-nav')
 
     <script>
         // DOM Elements
@@ -129,6 +132,10 @@
                 return;
             }
 
+            const button = document.getElementById('shareBtn');
+            button.innerHTML = "Loading...";
+            button.disabled = true;
+
             try {
                 const res = await fetch('/api/posts', {
                     method: 'POST',
@@ -177,6 +184,8 @@
             } catch (err) {
                 console.error(err);
             }
+            button.innerHTML = "Share";
+            button.disabled = false;
         }
     </script>
-</x-layout>
+@endsection

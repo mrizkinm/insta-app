@@ -1,9 +1,12 @@
-<x-layout :title="$title">
+@extends('components.layout')
+@section('title', $title)
+
+@section('content')
     <div class="min-h-screen flex flex-col items-center justify-center p-4">
         <div class="w-full max-w-md bg-white rounded-lg shadow-md overflow-hidden">
             <!-- Header -->
             <div class="bg-blue-600 py-6 px-8 text-center">
-                <h1 class="text-3xl font-bold text-white">InstaApp</h1>
+                <a href="/" class="text-3xl font-bold text-white">InstaApp</a>
                 <p class="text-blue-100 mt-2">Connect with friends around the world</p>
             </div>
             
@@ -12,9 +15,9 @@
                 <form id="loginForm" method="POST">
                     <div class="mb-4">
                         <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
-                            Email or Username
+                            Email
                         </label>
-                        <input class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" id="email" name="email" type="text" placeholder="Enter your email or username" required>
+                        <input class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" id="email" name="email" type="email" placeholder="Enter your email" required>
                     </div>
                     <div class="mb-4">
                         <label class="block text-gray-700 text-sm font-bold mb-2" for="password" required>
@@ -35,7 +38,7 @@
             <div class="bg-gray-50 px-8 py-4 text-center">
                 <p class="text-gray-600 text-sm">
                     Don't have an account? 
-                    <a href="register" class="font-medium text-blue-600 hover:text-blue-500">Sign up</a>
+                    <a href="/register" class="font-medium text-blue-600 hover:text-blue-500">Sign up</a>
                 </p>
             </div>
         </div>
@@ -76,6 +79,7 @@
 
             const form = e.target;
             const formData = new FormData(form);
+            const dataAll = Object.fromEntries(formData.entries());
 
             const response = await fetch("{{ route('login') }}", {
                 method: "POST",
@@ -83,7 +87,7 @@
                     'Content-Type': 'application/json',
                     'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
                 },
-                body: formData,
+                body: JSON.stringify(dataAll),
             });
 
             const data = await response.json();
@@ -126,4 +130,4 @@
             button.disabled = false;
         });
     </script>
-</x-layout>
+@endsection
