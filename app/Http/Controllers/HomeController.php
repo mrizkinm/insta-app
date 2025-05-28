@@ -8,7 +8,6 @@ class HomeController extends Controller
 {
     public function index()
     {
-        // This method will return the home view
         $data['title'] = 'Insta App';
         return view('landing', $data);
     }
