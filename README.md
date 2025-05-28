@@ -7,6 +7,7 @@
 - Komentar per postingan
 - API endpoint untuk posting & komentar
 - TailwindCSS untuk styling
+- Database menggunakan PostgreSQL
 - Upload gambar ke storage publik
 
 ## ⚙️ Instalasi & Setup
