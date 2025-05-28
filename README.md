@@ -1,12 +1,13 @@
 # 🖼️ InstaApp - Laravel 12 x Tailwind 4
 
 ## 🚀 Fitur
-- 🔐 Login & Logout
-- 📝 Tambah postingan (dengan gambar dan caption)
-- 💬 Komentar per postingan
-- 📦 API endpoint untuk posting & komentar
-- ⚡ TailwindCSS untuk styling
-- 📷 Upload gambar ke storage publik
+- Laravel 12
+- Login & Logout
+- Tambah postingan (dengan gambar dan caption)
+- Komentar per postingan
+- API endpoint untuk posting & komentar
+- TailwindCSS untuk styling
+- Upload gambar ke storage publik
 
 ## ⚙️ Instalasi & Setup
 
