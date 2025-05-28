@@ -10,12 +10,14 @@ use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
+    // fungsi ini untuk menampilkan halaman login
     public function showLogin()
     {
         $data['title'] = 'Login';
         return view('auth.login', $data);
     }
 
+    // fungsi ini untuk menangani proses login
     public function login(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -40,12 +42,14 @@ class AuthController extends Controller
         ], 401);
     }
 
+    // fungsi ini untuk menampilkan halaman pendaftaran
     public function showRegister()
     {
         $data['title'] = 'Register';
         return view('auth.register', $data);
     }
 
+    // fungsi ini untuk menangani proses pendaftaran
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [

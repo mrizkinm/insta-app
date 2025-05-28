@@ -11,7 +11,10 @@ use Illuminate\Support\Facades\Validator;
 
 class ApiController extends Controller
 {
-    public function getPosts(Request $request)
+    // fungsi ini untuk mengambil semua post
+    // dengan informasi pengguna, jumlah like, jumlah komentar, dan status like pengguna
+    // serta mengembalikan data dalam format JSON
+    public function getPosts(Request $request)  
     {
         $userId = $request->user()->id;
         $posts = Post::with('user')
@@ -46,6 +49,9 @@ class ApiController extends Controller
         ]);
     }
 
+    // fungsi ini untuk toggle like pada post
+    // jika post sudah disukai oleh pengguna, maka like akan dihapus
+    // jika belum, maka like akan ditambahkan
     public function toggleLike(Request $request, Post $post)
     {
         $userId = $request->user()->id;
@@ -64,6 +70,9 @@ class ApiController extends Controller
         ]);
     }
 
+    // fungsi ini untuk menambahkan komentar pada post
+    // komentar harus memiliki konten yang valid
+    // dan akan mengembalikan data komentar yang baru ditambahkan
     public function postComment(Request $request, Post $post)
     {
         $validator = Validator::make($request->all(), [
@@ -99,6 +108,8 @@ class ApiController extends Controller
         ]);
     }
 
+    // fungsi ini untuk mendapatkan detail post berdasarkan ID
+    // mengembalikan informasi post, pengguna, jumlah like, jumlah komentar, dan status like pengguna
     public function getDetailPost(Request $request, $id)
     {
         $userId = $request->user()->id;
@@ -130,6 +141,7 @@ class ApiController extends Controller
         ]);
     }
 
+    // fungsi ini untuk mendapatkan komentar dari post berdasarkan ID
     public function getComments($id)
     {
         $comments = Comment::with('user')
@@ -151,6 +163,7 @@ class ApiController extends Controller
         ]);
     }
 
+    // fungsi ini untuk membuat post baru
     public function createPost(Request $request)
     {
         $userId = $request->user()->id;
