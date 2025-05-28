@@ -12,7 +12,8 @@ class AuthController extends Controller
 {
     public function showLogin()
     {
-        return view('auth.login');
+        $data['title'] = 'Login';
+        return view('auth.login', $data);
     }
 
     public function login(Request $request)
@@ -24,24 +25,25 @@ class AuthController extends Controller
 
         if ($validator->fails()) {
             return response()->json([
-                'message' => 'Validasi gagal',
+                'message' => 'Validation failed',
                 'errors' => $validator->errors()
             ], 422);
         }
 
         if (Auth::attempt($request->only('email', 'password'))) {
             $request->session()->regenerate();
-            return response()->json(['message' => 'Login berhasil']);
+            return response()->json(['message' => 'Login successful']);
         }
 
         return response()->json([
-            'message' => 'Email atau password salah.'
+            'message' => 'Incorrect email or password'
         ], 401);
     }
 
     public function showRegister()
     {
-        return view('auth.register');
+        $data['title'] = 'Register';
+        return view('auth.register', $data);
     }
 
     public function register(Request $request)
@@ -55,7 +57,7 @@ class AuthController extends Controller
 
         if ($validator->fails()) {
             return response()->json([
-                'message' => 'Validasi gagal',
+                'message' => 'Validation failed',
                 'errors' => $validator->errors()
             ], 422);
         }
@@ -67,7 +69,7 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        return response()->json(['message' => 'Register berhasil']);
+        return response()->json(['message' => 'Registration successful']);
     }
 
     public function logout(Request $request)
