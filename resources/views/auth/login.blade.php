@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout :title="$title">
     <div class="min-h-screen flex flex-col items-center justify-center p-4">
         <div class="w-full max-w-md bg-white rounded-lg shadow-md overflow-hidden">
             <!-- Header -->
@@ -10,7 +10,6 @@
             <!-- Login Form -->
             <div class="p-8">
                 <form id="loginForm" method="POST">
-                    @csrf
                     <div class="mb-4">
                         <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
                             Email or Username
@@ -50,18 +49,18 @@
         validator.addField('#email', [
             {
             rule: 'required',
-            errorMessage: 'Email wajib diisi',
+            errorMessage: 'Email is required',
             },
         ])
         .addField('#password', [
             {
             rule: 'required',
-            errorMessage: 'Password wajib diisi',
+            errorMessage: 'Password is required',
             },
             {
             rule: 'minLength',
             value: 6,
-            errorMessage: 'Password minimal 6 karakter',
+            errorMessage: 'Password must be at least 6 characters',
             },
         ]);
 
@@ -74,15 +73,15 @@
             const button = document.querySelector("button[type='submit']");
             button.innerHTML = "Logging in...";
             button.disabled = true;
+
             const form = e.target;
             const formData = new FormData(form);
-            const csrfToken = document.querySelector('input[name="_token"]').value;
 
             const response = await fetch("{{ route('login') }}", {
                 method: "POST",
                 headers: {
-                    "X-CSRF-TOKEN": csrfToken,
-                    "Accept": "application/json"
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
                 },
                 body: formData,
             });
@@ -91,7 +90,17 @@
 
             if (response.ok) {
                 // success redirect
-                window.location.href = "/home";
+                Toastify({
+                    text: data.message,
+                    duration: 3000,
+                    gravity: "top",
+                    position: "right",
+                    backgroundColor: "#4CAF50",
+                }).showToast();
+
+                setTimeout(() => {
+                    window.location.href = "/home";
+                }, 2000);
             } else {
                 if (data.errors) {
                     for (const [field, messages] of Object.entries(data.errors)) {
