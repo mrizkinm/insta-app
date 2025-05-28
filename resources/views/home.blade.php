@@ -93,11 +93,11 @@
     <script>
         document.addEventListener('DOMContentLoaded', async () => {
             const wrapper = document.querySelector('#post-wrapper');
-            wrapper.innerHTML = '';
 
             try {
                 const res = await fetch('/api/posts');
                 const posts = await res.json();
+                wrapper.innerHTML = '';
 
                 if (posts.data.length === 0) {
                     wrapper.innerHTML = `
