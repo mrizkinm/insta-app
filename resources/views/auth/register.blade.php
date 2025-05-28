@@ -10,7 +10,6 @@
           <!-- Register Form -->
           <div class="p-8">
               <form id="registerForm" method="POST">
-                  @csrf
                   <div class="mb-4">
                       <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
                           Name
@@ -68,40 +67,40 @@
       validator.addField('#name', [
         {
           rule: 'required',
-          errorMessage: 'Nama wajib diisi',
+          errorMessage: 'Name is required',
         },
       ])
       .addField('#email', [
         {
           rule: 'required',
-          errorMessage: 'Email wajib diisi',
+          errorMessage: 'Email is required',
         },
         {
           rule: 'email',
-          errorMessage: 'Format email tidak valid',
+          errorMessage: 'Invalid email format',
         },
       ])
       .addField('#password', [
         {
           rule: 'required',
-          errorMessage: 'Password wajib diisi',
+          errorMessage: 'Password is required',
         },
         {
           rule: 'minLength',
           value: 6,
-          errorMessage: 'Password minimal 6 karakter',
+          errorMessage: 'Password must be at least 6 characters',
         },
       ])
       .addField('#password_confirmation', [
         {
           rule: 'required',
-          errorMessage: 'Konfirmasi password wajib diisi',
+          errorMessage: 'Password confirmation is required',
         },
         {
           validator: (value, fields) => {
             return value === fields['#password'].elem.value;
           },
-          errorMessage: 'Konfirmasi password tidak cocok',
+          errorMessage: 'Password confirmation does not match',
         },
       ]);
 
@@ -113,15 +112,15 @@
         const button = document.querySelector("button[type='submit']");
         button.innerHTML = "Loading...";
         button.disabled = true;
+
         const form = e.target;
         const formData = new FormData(form);
-        const csrfToken = document.querySelector('input[name="_token"]').value;
 
         const response = await fetch("{{ route('register') }}", {
             method: "POST",
             headers: {
-                "X-CSRF-TOKEN": csrfToken,
-                "Accept": "application/json"
+              'Content-Type': 'application/json',
+              'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
             },
             body: formData,
         });
@@ -130,7 +129,17 @@
 
         if (response.ok) {
           // success redirect
-          window.location.href = "/login";
+          Toastify({
+              text: data.message,
+              duration: 3000,
+              gravity: "top",
+              position: "right",
+              backgroundColor: "#4CAF50",
+          }).showToast();
+
+          setTimeout(() => {
+            window.location.href = "/login";
+          }, 2000);
         } else {
           if (data.errors) {
             for (const [field, messages] of Object.entries(data.errors)) {
