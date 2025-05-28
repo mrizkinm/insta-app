@@ -23,7 +23,7 @@
             <div class="flex items-center p-3">
                   <div class="w-8 h-8 rounded-full bg-blue-500 p-0.5">
                       <div class="bg-white p-0.5 rounded-full flex items-center justify-center">
-                          <span class="w-6 h-6 rounded-full bg-blue-600 text-white text-xs font-semibold flex items-center justify-center">
+                          <span id="author_image" class="w-6 h-6 rounded-full bg-blue-600 text-white text-xs font-semibold flex items-center justify-center">
                              U
                           </span>
                       </div>
@@ -100,7 +100,8 @@
             document.getElementById('created_at').textContent = data.created_at;
             document.getElementById('username').textContent = data.username;
             document.getElementById('image_path').src = data.image_path;
-            document.getElementById('user_image').textContent = data.name.split(' ').map(w => w[0].toUpperCase()).join('');
+            document.getElementById('author_image').textContent = data.name.split(' ').map(w => w[0].toUpperCase()).join('');;
+            document.getElementById('user_image').textContent = '{{ collect(explode(' ', auth()->user()->name))->map(fn($part) => strtoupper(substr($part, 0, 1)))->join('') }}';
           } else {
             throw new Error(data.message || 'Failed to fetch post');
           }
