@@ -1,47 +1,11 @@
-<x-layout>
+<x-layout :title="$title">
     <!-- Navbar -->
-    <nav class="bg-white border-b border-gray-200 fixed w-full z-10">
-        <div class="max-w-5xl mx-auto px-4">
-            <div class="flex justify-between items-center h-16">
-                <!-- Logo -->
-                <div class="flex-shrink-0">
-                    <h1 class="text-xl font-bold text-blue-600">InstaApp</h1>
-                </div>
-                
-                <!-- Search Bar -->
-                {{-- <div class="hidden md:block mx-4 flex-1 max-w-md">
-                    <div class="relative">
-                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <i class="fas fa-search text-gray-400"></i>
-                        </div>
-                        <input class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-gray-50 placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Search">
-                    </div>
-                </div> --}}
-                
-                <!-- Navigation Icons -->
-                <div class="flex items-center space-x-4">
-                    <a href="#" class="text-gray-700 hover:text-gray-900">
-                        <i class="fas fa-home text-2xl"></i>
-                    </a>
-                    <a href="#" class="text-gray-700 hover:text-gray-900">
-                        <i class="far fa-plus-square text-2xl"></i>
-                    </a>
-                    <div class="ml-4 relative">
-                        <div>
-                            <button class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                                <img class="h-8 w-8 rounded-full" src="https://randomuser.me/api/portraits/women/44.jpg" alt="Profile">
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </nav>
+    <x-navbar />
 
     <!-- Main Content -->
-    <main class="pt-16 pb-16 max-w-xl mx-auto">
+    <main class="pt-22 pb-22 max-w-xl mx-auto pl-4 pr-4">
         <!-- Stories -->
-        <div class="bg-white border border-gray-200 rounded-sm mt-6 mb-6 p-4 overflow-x-auto">
+        {{-- <div class="bg-white border border-gray-200 rounded-sm mt-6 mb-6 p-4 overflow-x-auto">
             <div class="flex space-x-4">
                 <!-- Your Story -->
                 <div class="flex flex-col items-center space-y-1">
@@ -113,162 +77,166 @@
                     <span class="text-xs truncate w-16 text-center">tech_guy</span>
                 </div>
             </div>
-        </div>
+        </div> --}}
         
         <!-- Posts -->
-        <div class="space-y-6">
-            <!-- Post 1 -->
-            <div class="bg-white border border-gray-200 rounded-sm">
-                <!-- Post Header -->
-                <div class="flex items-center justify-between p-3">
-                    <div class="flex items-center space-x-3">
-                        <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-yellow-400 to-pink-500 p-0.5">
-                            <div class="bg-white p-0.5 rounded-full">
-                                <img class="w-6 h-6 rounded-full object-cover" src="https://randomuser.me/api/portraits/women/32.jpg" alt="Profile">
-                            </div>
-                        </div>
-                        <span class="font-semibold text-sm">jane_doe</span>
-                    </div>
-                    <button class="text-gray-500">
-                        <i class="fas fa-ellipsis-h"></i>
-                    </button>
-                </div>
-                
-                <!-- Post Image -->
-                <div class="w-full aspect-square bg-gray-200">
-                    <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="Post">
-                </div>
-                
-                <!-- Post Actions -->
-                <div class="p-3">
-                    <div class="flex justify-between">
-                        <div class="flex space-x-4">
-                            <button class="text-gray-700 hover:text-red-500">
-                                <i class="far fa-heart text-2xl"></i>
-                            </button>
-                            <button class="text-gray-700 hover:text-gray-500">
-                                <i class="far fa-comment text-2xl"></i>
-                            </button>
-                            <button class="text-gray-700 hover:text-gray-500">
-                                <i class="far fa-paper-plane text-2xl"></i>
-                            </button>
-                        </div>
-                        <button class="text-gray-700 hover:text-gray-500">
-                            <i class="far fa-bookmark text-2xl"></i>
-                        </button>
-                    </div>
-                    
-                    <!-- Likes -->
-                    <div class="mt-2">
-                        <span class="font-semibold text-sm">1,234 likes</span>
-                    </div>
-                    
-                    <!-- Caption -->
-                    <div class="mt-1">
-                        <span class="font-semibold text-sm">jane_doe</span>
-                        <span class="text-sm ml-1">Enjoying the beautiful sunset at the beach! #sunset #beach #vacation</span>
-                    </div>
-                    
-                    <!-- Comments -->
-                    <div class="mt-1">
-                        <button class="text-gray-500 text-sm">View all 42 comments</button>
-                    </div>
-                    
-                    <!-- Time Posted -->
-                    <div class="mt-1">
-                        <span class="text-gray-400 text-xs uppercase">2 hours ago</span>
-                    </div>
-                    
-                    <!-- Add Comment -->
-                    <div class="mt-3 flex items-center border-t border-gray-100 pt-3">
-                        <input class="flex-1 text-sm border-none focus:ring-0" type="text" placeholder="Add a comment...">
-                        <button class="text-blue-500 font-semibold text-sm">Post</button>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Post 2 -->
-            <div class="bg-white border border-gray-200 rounded-sm">
-                <!-- Post Header -->
-                <div class="flex items-center justify-between p-3">
-                    <div class="flex items-center space-x-3">
-                        <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-yellow-400 to-pink-500 p-0.5">
-                            <div class="bg-white p-0.5 rounded-full">
-                                <img class="w-6 h-6 rounded-full object-cover" src="https://randomuser.me/api/portraits/men/22.jpg" alt="Profile">
-                            </div>
-                        </div>
-                        <span class="font-semibold text-sm">john_smith</span>
-                    </div>
-                    <button class="text-gray-500">
-                        <i class="fas fa-ellipsis-h"></i>
-                    </button>
-                </div>
-                
-                <!-- Post Image -->
-                <div class="w-full aspect-square bg-gray-200">
-                    <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1511765224389-37f0e77cf0eb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="Post">
-                </div>
-                
-                <!-- Post Actions -->
-                <div class="p-3">
-                    <div class="flex justify-between">
-                        <div class="flex space-x-4">
-                            <button class="text-gray-700 hover:text-red-500">
-                                <i class="far fa-heart text-2xl"></i>
-                            </button>
-                            <button class="text-gray-700 hover:text-gray-500">
-                                <i class="far fa-comment text-2xl"></i>
-                            </button>
-                            <button class="text-gray-700 hover:text-gray-500">
-                                <i class="far fa-paper-plane text-2xl"></i>
-                            </button>
-                        </div>
-                        <button class="text-gray-700 hover:text-gray-500">
-                            <i class="far fa-bookmark text-2xl"></i>
-                        </button>
-                    </div>
-                    
-                    <!-- Likes -->
-                    <div class="mt-2">
-                        <span class="font-semibold text-sm">892 likes</span>
-                    </div>
-                    
-                    <!-- Caption -->
-                    <div class="mt-1">
-                        <span class="font-semibold text-sm">john_smith</span>
-                        <span class="text-sm ml-1">Weekend vibes with my favorite people! #friends #weekend #goodtimes</span>
-                    </div>
-                    
-                    <!-- Comments -->
-                    <div class="mt-1">
-                        <button class="text-gray-500 text-sm">View all 23 comments</button>
-                    </div>
-                    
-                    <!-- Time Posted -->
-                    <div class="mt-1">
-                        <span class="text-gray-400 text-xs uppercase">5 hours ago</span>
-                    </div>
-                    
-                    <!-- Add Comment -->
-                    <div class="mt-3 flex items-center border-t border-gray-100 pt-3">
-                        <input class="flex-1 text-sm border-none focus:ring-0" type="text" placeholder="Add a comment...">
-                        <button class="text-blue-500 font-semibold text-sm">Post</button>
-                    </div>
-                </div>
+        <div class="space-y-6" id="post-wrapper">
+            <div class="text-center py-16">
+                <h2 class="text-gray-600 text-lg mt-4">Loading...</h2>
+                <p class="text-gray-400 text-sm">Please wait...</p>
             </div>
         </div>
     </main>
-    
-    <!-- Bottom Navigation (Mobile) -->
-    <div class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 flex justify-around items-center h-16 z-10">
-        <a href="#" class="text-gray-700 hover:text-gray-900">
-            <i class="fas fa-home text-2xl"></i>
-        </a>
-        <a href="#" class="text-gray-700 hover:text-gray-900">
-            <i class="far fa-plus-square text-2xl"></i>
-        </a>
-        <a href="#" class="text-gray-700 hover:text-gray-900">
-            <img class="h-6 w-6 rounded-full" src="https://randomuser.me/api/portraits/women/44.jpg" alt="Profile">
-        </a>
-    </div>
-  </x-layout>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const wrapper = document.querySelector('#post-wrapper');
+            wrapper.innerHTML = '';
+
+            try {
+                const res = await fetch('/api/posts');
+                const posts = await res.json();
+
+                if (posts.data.length === 0) {
+                    wrapper.innerHTML = `
+                        <div class="text-center py-16">
+                            <img src="https://www.svgrepo.com/show/97068/empty-box.svg" alt="No Posts" class="mx-auto w-24 h-24 opacity-50">
+                            <h2 class="text-gray-600 text-lg mt-4">No posts yet</h2>
+                            <p class="text-gray-400 text-sm">Come on, be the first to post something!</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                posts.data.forEach(post => {
+                    const postEl = `
+                    <div class="bg-white border border-gray-200 rounded-sm">
+                        <div class="flex items-center justify-between p-3">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 rounded-full bg-blue-500 p-0.5">
+                                    <div class="bg-white p-0.5 rounded-full flex items-center justify-center">
+                                        <span class="w-6 h-6 rounded-full bg-blue-600 text-white text-xs font-semibold flex items-center justify-center">
+                                           ${post.name.split(' ').map(w => w[0].toUpperCase()).join('')}
+                                        </span>
+                                    </div>
+                                </div>
+                                <span class="font-semibold text-sm">${post.username}</span>
+                            </div>
+                        </div>
+                        
+                        <a href="detail/${post.id}" class="w-full aspect-square bg-gray-200">
+                            <img class="w-full h-full object-cover" src="${post.image_path || 'https://via.placeholder.com/500'}" alt="Post">
+                        </a>
+
+                        <div class="p-3">
+                            <div class="flex justify-between">
+                                <div class="flex space-x-4">
+                                    <button class="like-btn text-gray-700 hover:text-red-500" onclick="toggleLike(${post.id})">
+                                        <i id="like-${post.id}" class="${post.is_liked ? 'fas text-red-500' : 'far'} fa-heart text-2xl"></i>
+                                    </button>
+                                    <a href="detail/${post.id}" class="text-gray-700 hover:text-gray-500">
+                                        <i class="far fa-comment text-2xl"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="mt-2">
+                                <span class="font-semibold text-sm" id="likes-${post.id}">${post.likes_count} likes</span>
+                            </div>
+
+                            <div class="mt-1">
+                                <span class="font-semibold text-sm">${post.username}</span>
+                                <span class="text-sm ml-1">${post.content}</span>
+                            </div>
+
+                            <div class="mt-1">
+                                <a href="detail/${post.id}" id="comments-${post.id}" class="text-gray-500 text-sm">View all ${post.comments_count} comments</a>
+                            </div>
+
+                            <div class="mt-1">
+                                <span class="text-gray-400 text-xs uppercase">${post.created_at}</span>
+                            </div>
+
+                            <div class="mt-3 flex items-center border-t border-gray-100 pt-3">
+                                <input id="comment-${post.id}" class="flex-1 text-sm outline-none focus:ring-0" type="text" placeholder="Add a comment..." required>
+                                <button class="text-blue-500 font-semibold text-sm" onclick="submitComment(${post.id})">Post</button>
+                            </div>
+                        </div>
+                    </div>
+                    `;
+                    wrapper.insertAdjacentHTML('beforeend', postEl);
+                });
+
+            } catch (err) {
+                console.error('Error fetching posts:', err);
+                wrapper.innerHTML = `
+                    <div class="text-center text-red-500 mt-6">
+                        Gagal memuat postingan. Coba refresh halaman.
+                    </div>`;
+            }
+        });
+
+        async function toggleLike(postId) {
+            const icon = document.getElementById(`like-${postId}`);
+            const countEl = document.getElementById(`likes-${postId}`);
+
+            try {
+                const res = await fetch(`/api/posts/${postId}/like`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                    },
+                });
+
+                if (!res.ok) throw new Error('Gagal like');
+
+                const data = await res.json();
+
+                icon.classList.remove('far', 'fas');
+                icon.classList.add(data.is_liked ? 'fas' : 'far');
+                icon.classList.toggle('text-red-500', data.is_liked);
+                countEl.textContent = `${data.likes_count} likes`;
+            } catch (err) {
+                console.log(err);
+                alert('Gagal melakukan like. Coba lagi nanti.');
+            }
+        }
+
+        async function submitComment(postId) {
+            const content = document.getElementById(`comment-${postId}`).value;
+            const countEl = document.getElementById(`comments-${postId}`);
+            
+            if (content.trim() === '') {
+                return;
+            }
+            try {
+                const res = await fetch(`/api/posts/${postId}/comments`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                    },
+                    body: JSON.stringify({ content }),
+                });
+                if (!res.ok) throw new Error('Failed to post comment');
+
+                const data = await res.json();
+
+                document.getElementById(`comment-${postId}`).value = '';
+                countEl.textContent = `View all ${data.comments_count} comments`;
+
+                Toastify({
+                    text: data.message,
+                    duration: 3000,
+                    gravity: "top",
+                    position: "right",
+                    backgroundColor: "#4CAF50",
+                }).showToast();
+            } catch (err) {
+                console.log(err);
+                alert('Gagal posting komentar. Coba lagi.');
+            }
+        }
+    </script>
+    <x-bottom-nav />
+</x-layout>
