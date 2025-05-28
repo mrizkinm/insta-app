@@ -46,9 +46,7 @@
                     <!-- Dropdown Menu -->
                     <div id="dropdownMenu" class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-neutral-200 ring-opacity-40 focus:outline-none z-50">
                         <div class="py-1" role="none">
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Your Profile</a>
-                            <div class="border-t border-gray-100"></div>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Settings</a>
+                            <span href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 font-bold" role="menuitem">{{ auth()->user()->name }} ({{ auth()->user()->username }})</span>
                             <div class="border-t border-gray-100"></div>
                             <a href="/logout" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Log Out</a>
                         </div>
